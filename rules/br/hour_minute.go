@@ -1,12 +1,12 @@
 package br
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"time"
 
 	"github.com/asvedr/when/rules"
-	"github.com/pkg/errors"
 )
 
 /*
@@ -43,12 +43,12 @@ func HourMinute(s rules.Strategy) rules.Rule {
 
 			hour, err := strconv.Atoi(m.Captures[0])
 			if err != nil {
-				return false, errors.Wrap(err, "hour minute rule")
+				return false, fmt.Errorf("hour minute rule: %v", err)
 			}
 
 			minutes, err := strconv.Atoi(m.Captures[1])
 			if err != nil {
-				return false, errors.Wrap(err, "hour minute rule")
+				return false, fmt.Errorf("hour minute rule: %v", err)
 			}
 
 			if minutes > 59 {

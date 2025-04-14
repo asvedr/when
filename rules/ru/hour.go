@@ -1,12 +1,12 @@
 package ru
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"time"
 
 	"github.com/asvedr/when/rules"
-	"github.com/pkg/errors"
 )
 
 /*
@@ -39,7 +39,7 @@ func Hour(s rules.Strategy) rules.Rule {
 			} else {
 				hour, err = strconv.Atoi(m.Captures[0])
 				if err != nil {
-					return false, errors.Wrap(err, "hour rule")
+					return false, fmt.Errorf("hour rule: %v", err)
 				}
 			}
 

@@ -1,13 +1,13 @@
 package ru
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/asvedr/when/rules"
-	"github.com/pkg/errors"
 )
 
 // https://play.golang.org/p/A-cF_q9U34
@@ -40,7 +40,7 @@ func Deadline(s rules.Strategy) rules.Rule {
 			} else {
 				num, err = strconv.Atoi(numStr)
 				if err != nil {
-					return false, errors.Wrapf(err, "convert '%s' to int", numStr)
+					return false, fmt.Errorf("convert '%s' to int: %v", numStr, err)
 				}
 			}
 

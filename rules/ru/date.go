@@ -1,13 +1,13 @@
 package ru
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/asvedr/when/rules"
-	"github.com/pkg/errors"
 )
 
 // https://go.dev/play/p/YsVdaraCwIP
@@ -22,19 +22,19 @@ func Date(s rules.Strategy) rules.Rule {
 
 			day, err := strconv.Atoi(m.Captures[0])
 			if err != nil {
-				return false, errors.Wrap(err, "date rule: day")
+				return false, fmt.Errorf("date rule: day: %v", err)
 			}
 
 			month, ok := MONTHS[strings.ToLower(m.Captures[1])]
 			if !ok {
-				return false, errors.New("date rule: invalid month")
+				return false, fmt.Errorf("date rule: invalid month")
 			}
 
 			year := time.Now().Year()
 			if m.Captures[2] != "" {
 				year, err = strconv.Atoi(m.Captures[2])
 				if err != nil {
-					return false, errors.Wrap(err, "date rule: year")
+					return false, fmt.Errorf("date rule: year: %v", err)
 				}
 			}
 
@@ -42,11 +42,11 @@ func Date(s rules.Strategy) rules.Rule {
 			if m.Captures[3] != "" && m.Captures[4] != "" {
 				hour, err = strconv.Atoi(m.Captures[3])
 				if err != nil {
-					return false, errors.Wrap(err, "date rule: hour")
+					return false, fmt.Errorf("date rule: hour: %v", err)
 				}
 				minute, err = strconv.Atoi(m.Captures[4])
 				if err != nil {
-					return false, errors.Wrap(err, "date rule: minute")
+					return false, fmt.Errorf("date rule: minute: %v", err)
 				}
 			}
 

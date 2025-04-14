@@ -1,6 +1,7 @@
 package when
 
 import (
+	"fmt"
 	"sort"
 	"time"
 
@@ -10,7 +11,6 @@ import (
 	"github.com/asvedr/when/rules/en"
 	"github.com/asvedr/when/rules/nl"
 	"github.com/asvedr/when/rules/ru"
-	"github.com/pkg/errors"
 )
 
 // Parser is a struct which contains options
@@ -110,7 +110,7 @@ func (p *Parser) Parse(text string, base time.Time) (*Result, error) {
 
 	res.Time, err = ctx.Time(res.Time)
 	if err != nil {
-		return nil, errors.Wrap(err, "bind context")
+		return nil, fmt.Errorf("bind context: %v", err)
 	}
 
 	return &res, nil

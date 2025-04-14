@@ -1,12 +1,12 @@
 package ru
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"time"
 
 	"github.com/asvedr/when/rules"
-	"github.com/pkg/errors"
 )
 
 // https://go.dev/play/p/vRzLhHHupUJ
@@ -21,28 +21,28 @@ func DotDateTime(s rules.Strategy) rules.Rule {
 
 			day, err := strconv.Atoi(m.Captures[0])
 			if err != nil {
-				return false, errors.Wrap(err, "dot date time rule: day")
+				return false, fmt.Errorf("dot date time rule: day: %v", err)
 			}
 
 			month, err := strconv.Atoi(m.Captures[1])
 			if err != nil {
-				return false, errors.Wrap(err, "dot date time rule: month")
+				return false, fmt.Errorf("dot date time rule: month: %v", err)
 			}
 
 			year, err := strconv.Atoi(m.Captures[2])
 			if err != nil {
-				return false, errors.Wrap(err, "dot date time rule: year")
+				return false, fmt.Errorf("dot date time rule: year: %v", err)
 			}
 
 			hour, minute := 0, 0
 			if m.Captures[3] != "" && m.Captures[4] != "" {
 				hour, err = strconv.Atoi(m.Captures[3])
 				if err != nil {
-					return false, errors.Wrap(err, "dot date time rule: hour")
+					return false, fmt.Errorf("dot date time rule: hour: %v", err)
 				}
 				minute, err = strconv.Atoi(m.Captures[4])
 				if err != nil {
-					return false, errors.Wrap(err, "dot date time rule: minute")
+					return false, fmt.Errorf("dot date time rule: minute: %v", err)
 				}
 			}
 

@@ -81,3 +81,7 @@ func (f *F) Find(text string) *Match {
 	m.Text = text[m.Left:m.Right]
 	return m
 }
+
+func Ptr[T any](v T) *T {
+	return &v
+}

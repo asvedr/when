@@ -6,8 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AlekSi/pointer"
-	"github.com/olebedev/when/rules"
+	"github.com/asvedr/when/rules"
 )
 
 func CasualDate(s rules.Strategy) rules.Rule {
@@ -27,34 +26,34 @@ func CasualDate(s rules.Strategy) rules.Rule {
 			switch {
 			case strings.Contains(lower, "号"), strings.Contains(lower, "日"):
 				day, _ := strconv.Atoi(m.Captures[2])
-				c.Day = pointer.ToInt(day)
+				c.Day = rules.Ptr(day)
 			}
 
 			switch {
 
 			case strings.Contains(lower, "后年"):
-				c.Year = pointer.ToInt(ref.Year() + 2)
+				c.Year = rules.Ptr(ref.Year() + 2)
 			case strings.Contains(lower, "明年"):
-				c.Year = pointer.ToInt(ref.Year() + 1)
+				c.Year = rules.Ptr(ref.Year() + 1)
 			case strings.Contains(lower, "下下"):
 				monthInt := int(ref.Month()) + 2
-				c.Month = pointer.ToInt(monthInt)
+				c.Month = rules.Ptr(monthInt)
 			case strings.Contains(lower, "下月"), strings.Contains(lower, "下个月"):
 				monthInt := int(ref.Month()) + 1
-				c.Month = pointer.ToInt(monthInt)
+				c.Month = rules.Ptr(monthInt)
 			case strings.Contains(lower, "上上"):
 				monthInt := int(ref.Month()) - 2
-				c.Month = pointer.ToInt(monthInt)
+				c.Month = rules.Ptr(monthInt)
 			case strings.Contains(lower, "上月"), strings.Contains(lower, "上个月"):
 				monthInt := int(ref.Month()) - 1
-				c.Month = pointer.ToInt(monthInt)
+				c.Month = rules.Ptr(monthInt)
 			case strings.Contains(lower, "今晚"), strings.Contains(lower, "晚上"):
 				if c.Hour == nil && c.Minute == nil || overwrite {
-					c.Hour = pointer.ToInt(22)
-					c.Minute = pointer.ToInt(0)
+					c.Hour = rules.Ptr(22)
+					c.Minute = rules.Ptr(0)
 				}
 			case strings.Contains(lower, "今天"), strings.Contains(lower, "今儿"):
-				// c.Hour = pointer.ToInt(18)
+				// c.Hour = rules.Ptr(18)
 			case strings.Contains(lower, "明天"), strings.Contains(lower, "明儿"):
 				if c.Duration == 0 || overwrite {
 					c.Duration += time.Hour * 24
@@ -73,7 +72,7 @@ func CasualDate(s rules.Strategy) rules.Rule {
 				}
 			case strings.Contains(lower, "昨晚"):
 				if (c.Hour == nil && c.Duration == 0) || overwrite {
-					c.Hour = pointer.ToInt(23)
+					c.Hour = rules.Ptr(23)
 					c.Duration -= time.Hour * 24
 				}
 			case strings.Contains(lower, "大后天"):

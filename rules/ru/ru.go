@@ -1,8 +1,9 @@
 package ru
 
 import (
-	"github.com/olebedev/when/rules"
 	"time"
+
+	"github.com/asvedr/when/rules"
 )
 
 var All = []rules.Rule{

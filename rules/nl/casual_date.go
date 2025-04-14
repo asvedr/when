@@ -5,8 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AlekSi/pointer"
-	"github.com/olebedev/when/rules"
+	"github.com/asvedr/when/rules"
 )
 
 func CasualDate(s rules.Strategy) rules.Rule {
@@ -23,19 +22,19 @@ func CasualDate(s rules.Strategy) rules.Rule {
 					if o.Morning != 0 {
 						c.Hour = &o.Morning
 					} else {
-						c.Hour = pointer.ToInt(8)
+						c.Hour = rules.Ptr(8)
 					}
 				case strings.Contains(lower, "middag"):
 					if o.Afternoon != 0 {
 						c.Hour = &o.Afternoon
 					} else {
-						c.Hour = pointer.ToInt(15)
+						c.Hour = rules.Ptr(15)
 					}
 				case strings.Contains(lower, "avond"):
 					if o.Evening != 0 {
 						c.Hour = &o.Evening
 					} else {
-						c.Hour = pointer.ToInt(18)
+						c.Hour = rules.Ptr(18)
 					}
 				}
 			}
@@ -43,11 +42,11 @@ func CasualDate(s rules.Strategy) rules.Rule {
 			switch {
 			case strings.Contains(lower, "vannacht"):
 				if c.Hour == nil && c.Minute == nil || overwrite {
-					c.Hour = pointer.ToInt(23)
-					c.Minute = pointer.ToInt(0)
+					c.Hour = rules.Ptr(23)
+					c.Minute = rules.Ptr(0)
 				}
 			case strings.Contains(lower, "vandaag"):
-				// c.Hour = pointer.ToInt(18)
+				// c.Hour = rules.Ptr(18)
 			case strings.Contains(lower, "morgen"):
 				if c.Duration == 0 || overwrite {
 					c.Duration += time.Hour * 24
@@ -58,7 +57,7 @@ func CasualDate(s rules.Strategy) rules.Rule {
 				}
 			case strings.Contains(lower, "afgelopen nacht"):
 				if (c.Hour == nil && c.Duration == 0) || overwrite {
-					c.Hour = pointer.ToInt(23)
+					c.Hour = rules.Ptr(23)
 					c.Duration -= time.Hour * 24
 				}
 			}

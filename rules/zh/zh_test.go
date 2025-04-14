@@ -1,10 +1,11 @@
 package zh_test
 
 import (
-	"github.com/olebedev/when"
-	"github.com/stretchr/testify/require"
 	"testing"
 	"time"
+
+	"github.com/asvedr/when"
+	"github.com/stretchr/testify/require"
 )
 
 var now = time.Date(2022, time.March, 14, 0, 0, 0, 0, time.UTC)

@@ -5,8 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AlekSi/pointer"
-	"github.com/olebedev/when/rules"
+	"github.com/asvedr/when/rules"
 )
 
 func CasualDate(s rules.Strategy) rules.Rule {
@@ -20,11 +19,11 @@ func CasualDate(s rules.Strategy) rules.Rule {
 			switch {
 			case regexContains("(nesta|esta|hoje)(\\s|\\s([aà]|de)\\s)noite", lower):
 				if c.Hour == nil && c.Minute == nil || overwrite {
-					c.Hour = pointer.ToInt(23)
-					c.Minute = pointer.ToInt(0)
+					c.Hour = rules.Ptr(23)
+					c.Minute = rules.Ptr(0)
 				}
 			case strings.Contains(lower, "hoje"):
-				// c.Hour = pointer.ToInt(18)
+				// c.Hour = rules.Ptr(18)
 			case strings.Contains(lower, "amanhã"):
 				if c.Duration == 0 || overwrite {
 					c.Duration += time.Hour * 24
@@ -35,7 +34,7 @@ func CasualDate(s rules.Strategy) rules.Rule {
 				}
 			case regexContains("(ontem|última)(\\s|\\s([aà]|de)\\s)noite", lower):
 				if (c.Hour == nil && c.Duration == 0) || overwrite {
-					c.Hour = pointer.ToInt(23)
+					c.Hour = rules.Ptr(23)
 					c.Duration -= time.Hour * 24
 				}
 			}

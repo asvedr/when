@@ -1,11 +1,12 @@
 package nl_test
 
 import (
-	"github.com/olebedev/when"
-	"github.com/olebedev/when/rules"
-	"github.com/olebedev/when/rules/nl"
 	"testing"
 	"time"
+
+	"github.com/asvedr/when"
+	"github.com/asvedr/when/rules"
+	"github.com/asvedr/when/rules/nl"
 )
 
 func TestHour(t *testing.T) {

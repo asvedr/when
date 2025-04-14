@@ -4,12 +4,12 @@ import (
 	"sort"
 	"time"
 
-	"github.com/olebedev/when/rules"
-	"github.com/olebedev/when/rules/br"
-	"github.com/olebedev/when/rules/common"
-	"github.com/olebedev/when/rules/en"
-	"github.com/olebedev/when/rules/nl"
-	"github.com/olebedev/when/rules/ru"
+	"github.com/asvedr/when/rules"
+	"github.com/asvedr/when/rules/br"
+	"github.com/asvedr/when/rules/common"
+	"github.com/asvedr/when/rules/en"
+	"github.com/asvedr/when/rules/nl"
+	"github.com/asvedr/when/rules/ru"
 	"github.com/pkg/errors"
 )
 

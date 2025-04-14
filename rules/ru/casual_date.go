@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/olebedev/when/rules"
+	"github.com/asvedr/when/rules"
 )
 
 // https://play.golang.org/p/QrFtjmjUoJ
@@ -21,7 +21,7 @@ func CasualDate(s rules.Strategy) rules.Rule {
 
 			switch {
 			case strings.Contains(lower, "сегодня"):
-				// c.Hour = pointer.ToInt(18)
+				// c.Hour = rules.Ptr(18)
 			case strings.Contains(lower, "завтра"):
 				if c.Duration == 0 || s == rules.Override {
 					c.Duration += time.Hour * 24

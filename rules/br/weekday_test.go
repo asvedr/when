@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/olebedev/when"
-	"github.com/olebedev/when/rules"
-	"github.com/olebedev/when/rules/br"
+	"github.com/asvedr/when"
+	"github.com/asvedr/when/rules"
+	"github.com/asvedr/when/rules/br"
 )
 
 func TestWeekday(t *testing.T) {

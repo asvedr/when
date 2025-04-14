@@ -6,8 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AlekSi/pointer"
-	"github.com/olebedev/when/rules"
+	"github.com/asvedr/when/rules"
 	"github.com/pkg/errors"
 )
 
@@ -67,11 +66,11 @@ func Deadline(s rules.Strategy) rules.Rule {
 					}
 				case strings.Contains(exponent, "maand"):
 					if c.Month == nil || overwrite {
-						c.Month = pointer.ToInt((int(ref.Month()) + num) % 12)
+						c.Month = rules.Ptr((int(ref.Month()) + num) % 12)
 					}
 				case strings.Contains(exponent, "jaar"):
 					if c.Year == nil || overwrite {
-						c.Year = pointer.ToInt(ref.Year() + num)
+						c.Year = rules.Ptr(ref.Year() + num)
 					}
 				}
 			} else {
@@ -95,7 +94,7 @@ func Deadline(s rules.Strategy) rules.Rule {
 					}
 				case strings.Contains(exponent, "jaar"):
 					if c.Month == nil || overwrite {
-						c.Month = pointer.ToInt((int(ref.Month()) + 6) % 12)
+						c.Month = rules.Ptr((int(ref.Month()) + 6) % 12)
 					}
 				}
 			}
